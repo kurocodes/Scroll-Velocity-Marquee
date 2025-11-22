@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Plaster&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Plaster", cursive;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: #6600ff;
+  color: #fafafa;
+}
+
+.container {
+  position: relative;
+  padding-block: 85vh;
+}
+
+.parallax {
+  overflow: hidden;
+  line-height: 0.8;
+  letter-spacing: -0.125rem;
+}
+
+.scroller {
+  font-size: 6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-flex;
+  flex-wrap: nowrap;
+}
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+  background: #6600ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fafafa;
+  -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+  background: #6600ff;
+}
