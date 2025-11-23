@@ -1,73 +1,66 @@
-# React + TypeScript + Vite
+# ⚡ Scroll Velocity Marquee
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A smooth, infinitely looping marquee that reacts to your scroll speed and direction — built using React, TypeScript, and Motion (Framer Motion v4).
+As you scroll up or down, the text speeds up or reverses direction for a dynamic, responsive parallax effect.
 
-Currently, two official plugins are available:
+## ✨ Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `React`
+- `TypeScript`
+- `Motion / Framer Motion V4`
+- `Tailwind CSS`
+- `Vite`
+- `Lenis` (Smooth Scrolling)
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Infinite marquee animation with seamless looping
+- Scroll velocity detection (speed + direction)
+- Text accelerates as you scroll faster
+- Automatically reverses when scrolling upward
+- Spring-smoothed velocity for natural, fluid motion
+- Fully responsive and easy to customize
+- Clean TypeScript implementation with strong types
 
-## Expanding the ESLint configuration
+## 📍 The Process
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+I wanted to build a marquee component that didn’t just move endlessly, but felt alive—reactive, dynamic, and influenced by user interaction.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Framer Motion’s scroll velocity example inspired me, but I rewrote the entire thing with:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Clean TypeScript
+- Better variable naming
+- Tailwind styling
+- Lenis smooth scrolling
+- My own improvements and spacing fixes
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The result is a buttery-smooth marquee that:
+- Moves infinitely without jumps
+- Speeds up based on scroll velocity
+- Reverses direction when scrolling up
+- Works across screen sizes
+It feels energetic and modern—perfect for hero sections, banners, or dynamic landing pages.
+
+## 📦 Usage
+
+```
+<ScrollVelocityMarquee baseVelocity={-5}>
+  Kuro Kuro Kuro Kuro
+</ScrollVelocityMarquee>
+
+<ScrollVelocityMarquee baseVelocity={5}>
+  Scroll Velocity Marquee
+</ScrollVelocityMarquee>
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚦 Running the Project
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
+4. Visit: `http://localhost:5173` in your browser
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🎞️ Preview
+
+https://github.com/user-attachments/assets/3a8af1ac-4825-4e9f-be2b-12349a0b17a0
