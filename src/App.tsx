@@ -9,7 +9,8 @@ import {
   useVelocity,
   wrap,
 } from "motion/react";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
+import { useResize } from "./useResize";
 
 interface ScrollVelocityMarqueeProps {
   children: React.ReactNode;
@@ -31,31 +32,41 @@ function ScrollVelocityMarquee({
     clamp: false,
   });
 
-  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+  // Measure wrapper + one copy of the content
+  const [wrapperRef, wrapperSize] = useResize();
+  const [contentRef, contentSize] = useResize();
+
+  // Dynamically calculate copies needed
+  const copies = useMemo(() => {
+    if (contentSize.width === 0 || wrapperSize.width === 0) return 4;
+    return Math.ceil(wrapperSize.width / contentSize.width) + 2;
+  }, [contentSize.width, wrapperSize.width]);
 
   const directionRef = useRef<1 | -1>(1);
 
+  // Animate marquee
   useAnimationFrame((_t, delta) => {
     let moveBy = directionRef.current * baseVelocity * (delta / 1000);
 
-    if (velocityFactor.get() < 0) {
-      directionRef.current = -1;
-    } else if (velocityFactor.get() > 0) {
-      directionRef.current = 1;
-    }
+    if (velocityFactor.get() < 0) directionRef.current = -1;
+    else if (velocityFactor.get() > 0) directionRef.current = 1;
 
     moveBy += directionRef.current * moveBy * velocityFactor.get();
 
     baseX.set(baseX.get() + moveBy);
   });
 
+  // Pixel-based wrapping
+  const x = useTransform(baseX, (v) => `${wrap(-contentSize.width, 0, v)}px`);
+
   return (
-    <div className="parallax">
+    <div className="parallax" ref={wrapperRef}>
       <motion.div className="scroller" style={{ x }}>
-        <span>{children}&nbsp;</span>
-        <span>{children}&nbsp;</span>
-        <span>{children}&nbsp;</span>
-        <span>{children}&nbsp;</span>
+        {Array.from({ length: copies }).map((_, i) => (
+          <span key={i} ref={i === 0 ? contentRef : null}>
+            {children}&nbsp;
+          </span>
+        ))}
       </motion.div>
     </div>
   );
@@ -65,10 +76,8 @@ export default function App() {
   return (
     <ReactLenis root>
       <div className="container">
-        <ScrollVelocityMarquee baseVelocity={-5}>
-          Kuro Kuro Kuro Kuro
-        </ScrollVelocityMarquee>
-        <ScrollVelocityMarquee baseVelocity={5}>
+        <ScrollVelocityMarquee baseVelocity={-200}>Kuro</ScrollVelocityMarquee>
+        <ScrollVelocityMarquee baseVelocity={200}>
           Scroll Velocity Marquee
         </ScrollVelocityMarquee>
       </div>

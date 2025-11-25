@@ -22,6 +22,24 @@ body {
   overflow: hidden;
   line-height: 0.8;
   letter-spacing: -0.125rem;
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent
+  );
 }
 
 .scroller {
